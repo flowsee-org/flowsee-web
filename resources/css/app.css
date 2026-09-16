@@ -1,0 +1,218 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/* ============================================================
+   FLOWSEE PUBLIC TERMINAL — design system
+   ---------- ------------------------------------------------
+   Near-black + terminal green + Flowsee orange.
+   Monospace everywhere. Effects are CSS/JS-native.
+   ============================================================ */
+
+@theme {
+    /* Terminal black (barely green-tinted) */
+    --color-term-bg: #060806;
+    /* Terminal green — text, binary, cursor, interactions */
+    --color-term-fg: #37ff6a;
+    /* Flowsee orange — brand & major headings */
+    --color-brand: #ff6a00;
+    /* Brand-orange dim uses opacity modifiers (e.g. text-brand/40) */
+
+    /* System monospace only — no font downloads */
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
+        'Liberation Mono', monospace;
+    /* Arabic-capable stack for Persian runs */
+    --font-sans: 'Vazirmatn', 'Noto Sans Arabic', Tahoma, system-ui, sans-serif;
+}
+
+/* ---------- base ---------- */
+
+html {
+    color-scheme: dark;
+    scrollbar-color: #1d2b1f #060806;
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    background-color: var(--color-term-bg);
+    color: var(--color-term-fg);
+    font-family: var(--font-mono);
+}
+
+::selection {
+    background: var(--color-term-fg);
+    color: var(--color-term-bg);
+}
+
+/* ---------- terminal chrome ---------- */
+
+/* Blinking block cursor. Color inherits from currentColor. */
+@keyframes term-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+.cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.05em;
+    margin-inline-start: 0.08em;
+    background: currentColor;
+    vertical-align: -0.18em;
+    animation: term-blink 1s steps(1) infinite;
+}
+
+/* Three green boot dots (staggered) */
+@keyframes dot-blink {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 1; }
+}
+.dots span {
+    animation: dot-blink 1.4s infinite;
+}
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Very faint CRT scanlines layer */
+.scanlines {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0) 0px,
+        rgba(0, 0, 0, 0) 2px,
+        rgba(55, 255, 106, 0.035) 3px
+    );
+}
+
+/* Terminal window frame */
+.term-frame {
+    position: relative;
+    border: 1px solid rgba(55, 255, 106, 0.16);
+    background-color: rgba(0, 0, 0, 0.38);
+}
+
+/* Dense binary band (filled by binary-bg.js) */
+.binary-field {
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+}
+.binary-field canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Persian helper — forces RTL so mirror strings lay out right-to-left */
+.arabic {
+    font-family: var(--font-sans);
+    direction: rtl;
+    unicode-bidi: isolate;
+}
+
+/* Typewriter caret inside a prompt line */
+.type-caret {
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    background: currentColor;
+    vertical-align: -0.15em;
+    animation: term-blink 1s steps(1) infinite;
+}
+
+/* ---------- reveal / enter animations ---------- */
+
+@keyframes line-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+/* Reveal items are hidden ONLY when JS is present (html.js). No-JS users
+   get full content; JS drives the staggered .is-open animation. */
+html.js .reveal-item {
+    opacity: 0;
+}
+.is-open .reveal-item,
+.is-open.reveal-item {
+    animation: line-in 0.45s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+    animation-delay: var(--d, 0s);
+}
+
+/* Orange brand rule that draws itself in */
+@keyframes rule-in {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+.rule-in {
+    transform-origin: left center;
+    animation: rule-in 0.9s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+
+/* Orange brand rule — collapsed until hero starts (.is-on) */
+.brand-rule {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1) 0.15s;
+}
+.brand-rule.is-on {
+    transform: scaleX(1);
+}
+
+/* Procedural team avatars — orange "▓" highlights */
+.avatar .hi {
+    color: var(--color-brand);
+}
+
+/* Scroll cue bounce */
+@keyframes cue-drop {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(6px); opacity: 0.4; }
+}
+.cue-bounce {
+    animation: cue-drop 1.6s ease-in-out infinite;
+}
+
+/* ---------- intro overlay states ---------- */
+
+/* Boot area: fades and lifts upward when cleared */
+.intro-boot {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.intro-boot.cleared {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+/* Skip hint fades in when shown */
+.intro-skip {
+    transition: opacity 0.4s ease;
+}
+
+/* ---------- global reduced-motion kill switch ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+        scroll-behavior: auto !important;
+    }
+    .cursor,
+    .type-caret,
+    .dots span {
+        animation: none !important;
+        opacity: 1;
+    }
+}
