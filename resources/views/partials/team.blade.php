@@ -1,5 +1,5 @@
 {{--
-    Team — "OUR TEAM / ام میت"
+    Team — "OUR TEAM / تیم ما"
     Terminal window; same command/scroll reveal pattern as About,
     progressively loading 10 placeholder member cards.
 
@@ -22,7 +22,7 @@
                     </span>
                     <span>team — 10 members</span>
                 </span>
-                <span class="arabic text-sm text-term-fg/60" dir="rtl" aria-hidden="true">ام میت</span>
+                <span class="arabic text-sm text-term-fg/60" dir="rtl" aria-hidden="true">تیم ما</span>
                 <span class="sr-only">Our team</span>
             </div>
 

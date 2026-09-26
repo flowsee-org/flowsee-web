@@ -26,7 +26,7 @@
             WAKE UP FLOWSEE
         </span>
         <span class="arabic text-lg text-term-fg sm:text-xl md:text-2xl" dir="rtl">
-            یسولف وش رادیب
+            بیدار شو فلوسی
         </span>
         <span class="sr-only">بیدار شو فلوسی — wake up Flowsee</span>
     </div>

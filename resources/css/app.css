@@ -215,4 +215,4 @@ html.js .reveal-item {
         animation: none !important;
         opacity: 1;
     }
-}
+}.arabic { letter-spacing: normal; word-spacing: normal; }

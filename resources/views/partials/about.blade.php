@@ -1,5 +1,5 @@
 {{--
-    About — "ABOUT US / ام هرابرد"
+    About — "ABOUT US / درباره ما"
     Terminal window; clicking (or scrolling to) the command line runs
     `open about_us`, progressively loading 8 placeholder entries.
 
@@ -22,7 +22,7 @@
                     </span>
                     <span>about_us — 8 entries</span>
                 </span>
-                <span class="arabic text-sm text-term-fg/60" dir="rtl" aria-hidden="true">ام هرابرد</span>
+                <span class="arabic text-sm text-term-fg/60" dir="rtl" aria-hidden="true">درباره ما</span>
                 <span class="sr-only">About us</span>
             </div>
 
