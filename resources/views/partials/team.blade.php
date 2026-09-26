@@ -46,47 +46,26 @@
 
                 {{-- 10 progressively loaded member cards --}}
                 <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group aria-live="polite">
-                    @for ($i = 1; $i <= 10; $i++)
+                    @php $employees = \App\Models\Employee::latest()->get(); @endphp
+                    @forelse ($employees as $i => $emp)
                         <article class="reveal-item member-card flex gap-4 border border-term-fg/12 p-4
                                         transition-colors hover:border-term-fg/35"
-                                 style="--d: {{ ($i - 1) * 0.12 }}s">
-
-                            {{-- Procedural avatar (seeded, deterministic) --}}
-                            @php
-                                $rows = 6; $cols = 7;
-                                mt_srand($i * 31);
-                                $avi = '';
-                                for ($r = 0; $r < $rows; $r++) {
-                                    for ($c = 0; $c < $cols; $c++) {
-                                        $n = mt_rand(0, 10);
-                                        $ch = $n < 4 ? '<span>0</span>' : ($n < 8 ? '<span>1</span>' : '<span class="hi">▓</span>');
-                                        $avi .= $ch . ' ';
-                                    }
-                                    $avi .= "\n";
-                                }
-                                mt_srand();
-                                $percent = 60 + ($i * 37) % 40; // 60–99%, seeded-like
-                                $filled = round($percent / 10); // out of 10 blocks
-                            @endphp
-                            <div class="shrink-0 self-start" aria-hidden="true">
-                                <pre class="avatar text-[10px] leading-[1.35] text-term-fg/60">{!! $avi !!}</pre>
-                            </div>
-
+                                 style="--d: {{ $i * 0.12 }}s">
+                            @if($emp->image)
+                            <img src="/storage/{{ $emp->image }}" class="w-16 h-16 object-cover rounded shrink-0" alt="{{ $emp->title }}">
+                            @else
+                            <div class="w-16 h-16 shrink-0 bg-term-fg/10 rounded flex items-center justify-center text-xs text-term-fg/40">NO IMG</div>
+                            @endif
                             <div class="min-w-0">
-                                <p class="text-sm font-bold text-brand">member_{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</p>
-                                <p class="mt-0.5 truncate text-sm text-term-fg/80">[PLACEHOLDER — name]</p>
-                                <p class="truncate text-xs text-term-fg/45">[PLACEHOLDER — role]</p>
-
-                                {{-- Pseudo binary skill bar --}}
-                                <p class="mt-3 flex items-center gap-2 text-[11px] text-term-fg/55" aria-label="pseudo skill indicator (placeholder)">
-                                    <span aria-hidden="true">skill:</span>
-                                    <span class="tracking-tight text-term-fg/75" aria-hidden="true">
-                                        {{ str_repeat('▮', $filled) }}{{ str_repeat('▯', 10 - $filled) }}</span>
-                                    <span class="text-term-fg/40">{{ $percent }}%</span>
-                                </p>
+                                <p class="text-sm font-bold text-brand">{{ $emp->title }}</p>
+                                <p class="mt-0.5 text-sm text-term-fg/80">{{ Str::limit($emp->text, 100) }}</p>
                             </div>
                         </article>
-                    @endfor
+                    @empty
+                        <article class="reveal-item member-card flex gap-4 border border-term-fg/12 p-4">
+                            <div class="min-w-0"><p class="text-sm font-bold text-brand">No team members yet</p><p class="text-xs text-term-fg/45">Add from /wp-admin</p></div>
+                        </article>
+                    @endforelse
                 </div>
 
             </div>

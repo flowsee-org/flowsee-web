@@ -46,19 +46,29 @@
 
                 {{-- 8 progressively loaded entries --}}
                 <div id="about-output" class="data-block mt-6" data-reveal-group aria-live="polite">
-                    @php $keys = ['root','mission','origin','value','craft','systems','stack','signal']; @endphp
-                    @foreach ($keys as $i => $key)
-                        <article class="reveal-item entry border-t border-term-fg/10 py-3 first:border-t-0 first:pt-0"
-                                 style="--d: {{ $i * 0.12 }}s">
+                    @php $blogs = \App\Models\AboutBlog::latest()->get(); @endphp
+                    @forelse ($blogs as $i => $blog)
+                        <article class="reveal-item entry border-t border-term-fg/10 py-3 first:border-t-0 first:pt-0" style="--d: {{ $i * 0.12 }}s">
                             <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                                 <span class="w-12 shrink-0 text-brand">[ {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }} ]</span>
-                                <span class="w-24 shrink-0 text-term-fg/55">{{ $key }}</span>
+                                <span class="w-24 shrink-0 text-term-fg/55">BLOG</span>
                                 <span class="min-w-0 flex-1 text-term-fg/75">
-                                    [PLACEHOLDER — replace with real {{ $key }} content]
+                                    <strong>{{ $blog->title }}</strong> — {{ Str::limit($blog->text, 120) }}
                                 </span>
                             </div>
+                            @if($blog->image)
+                            <div class="mt-2"><img src="/storage/{{ $blog->image }}" class="max-h-48 rounded" alt="{{ $blog->title }}"></div>
+                            @endif
                         </article>
-                    @endforeach
+                    @empty
+                        <article class="reveal-item entry border-t border-term-fg/10 py-3 first:border-t-0 first:pt-0">
+                            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                                <span class="w-12 shrink-0 text-brand">[ 01 ]</span>
+                                <span class="w-24 shrink-0 text-term-fg/55">ROOT</span>
+                                <span class="min-w-0 flex-1 text-term-fg/75">No blogs yet — add from /wp-admin.</span>
+                            </div>
+                        </article>
+                    @endforelse
                 </div>
 
             </div>
