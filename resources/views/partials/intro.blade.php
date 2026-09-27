@@ -2,7 +2,7 @@
     Wake-up / intro overlay.
     Covers viewport until the boot sequence completes (or is skipped).
     <noscript> immediately hides it so no-JS users see the hero directly.
-   prefers-reduced-motion: JS sets display:none instantly — no black screen trap.
+    prefers-reduced-motion: JS sets display:none instantly — no black screen trap.
 --}}
 
 <div id="intro"
@@ -23,12 +23,8 @@
     {{-- Phase 1b: wake-up banner (shown after "screen clear") --}}
     <div id="wake-text" class="wake-text absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center opacity-0 transition-opacity duration-500">
         <span class="text-3xl font-bold uppercase tracking-widest text-brand sm:text-4xl md:text-5xl">
-            WAKE UP FLOWSEE
+            FLOWSEE
         </span>
-        <span class="arabic text-lg text-term-fg sm:text-xl md:text-2xl" dir="rtl">
-            بیدار شو فلوسی
-        </span>
-        <span class="sr-only">بیدار شو فلوسی — wake up Flowsee</span>
     </div>
 
     {{-- Skip hint --}}

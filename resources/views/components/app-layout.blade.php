@@ -21,7 +21,7 @@
         skip to content</a>
 
     {{-- Global dim binary background — filled by binary-bg.js (Phase 3) --}}
-    <canvas id="binary-bg" class="fixed inset-0 z-0 h-full w-full opacity-[0.07]" aria-hidden="true"></canvas>
+    <canvas id="binary-bg" class="fixed inset-0 z-0 h-full w-full opacity-[0.18]" aria-hidden="true"></canvas>
 
     {{-- CRT scanlines (non-interactive) --}}
     <div class="scanlines" aria-hidden="true"></div>

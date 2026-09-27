@@ -3,8 +3,9 @@
     @include('partials.binary')
     @include('partials.about')
 
-    {{-- Empty binary terminal divider — leads into OUR TEAM --}}
+    @include('partials.work')
     @include('partials.binary')
+
     @include('partials.team')
 
     @include('partials.contact')

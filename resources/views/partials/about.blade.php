@@ -1,10 +1,7 @@
 {{--
-    About — "ABOUT US / درباره ما"
+    About — "ABOUT US"
     Terminal window; clicking (or scrolling to) the command line runs
-    `open about_us`, progressively loading 8 placeholder entries.
-
-    CONTENT PLACEHOLDERS: every body value below is [PLACEHOLDER].
-    Replace them with real Flowsee content — keep the entry structure.
+    `open about_us`, progressively loading entries.
 --}}
 
 <section id="about" class="relative px-5 py-24 sm:py-32">
@@ -22,7 +19,6 @@
                     </span>
                     <span>about_us — 8 entries</span>
                 </span>
-                <span class="arabic text-sm text-term-fg/60" dir="rtl" aria-hidden="true">درباره ما</span>
                 <span class="sr-only">About us</span>
             </div>
 
@@ -32,7 +28,7 @@
                     ABOUT US
                 </h2>
                 <p class="mb-6 text-sm text-term-fg/50">
-                    [PLACEHOLDER — one-line section intro]
+                    Brand • Product • Web • Growth
                 </p>
 
                 {{-- Command line: click or scroll to execute --}}
@@ -52,9 +48,10 @@
                             <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                                 <span class="w-12 shrink-0 text-brand">[ {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }} ]</span>
                                 <span class="w-24 shrink-0 text-term-fg/55">BLOG</span>
-                                <span class="min-w-0 flex-1 text-term-fg/75">
-                                    <strong>{{ $blog->title }}</strong> — {{ Str::limit($blog->text, 120) }}
-                                </span>
+                                <div class="min-w-0 flex-1 flex flex-col gap-1 text-term-fg/75">
+                                    <strong>{{ $blog->title }}</strong>
+                                    <span>{{ Str::limit($blog->text, 120) }}</span>
+                                </div>
                             </div>
                             @if($blog->image)
                             <div class="mt-2"><img src="/storage/{{ $blog->image }}" class="max-h-48 rounded" alt="{{ $blog->title }}"></div>
@@ -74,7 +71,6 @@
             </div>
         </div>
 
-        {{-- topbar nav target --}}
         <span id="team-top-spacer" class="sr-only"></span>
     </div>
 </section>

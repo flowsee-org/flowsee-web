@@ -1,5 +1,13 @@
 @import 'tailwindcss';
 
+/* Montserrat terminal-style font (loaded locally) */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/font/Montserrat./Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
@@ -19,9 +27,11 @@
     --color-brand: #ff6a00;
     /* Brand-orange dim uses opacity modifiers (e.g. text-brand/40) */
 
-    /* System monospace only — no font downloads */
+    /* Terminal monospace */
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
         'Liberation Mono', monospace;
+    /* Terminal-contrast sans for headings / non-terminal text */
+    --font-sans: 'Montserrat', 'Vazirmatn', ui-sans-serif, system-ui, sans-serif;
     /* Arabic-capable stack for Persian runs */
     --font-sans: 'Vazirmatn', 'Noto Sans Arabic', Tahoma, system-ui, sans-serif;
 }
@@ -44,6 +54,7 @@ body {
     background-color: var(--color-term-bg);
     color: var(--color-term-fg);
     font-family: var(--font-mono);
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="18" font-size="16" fill="%2337ff6a">$</text></svg>') 12 12, auto;
 }
 
 ::selection {
@@ -89,7 +100,7 @@ body {
         0deg,
         rgba(0, 0, 0, 0) 0px,
         rgba(0, 0, 0, 0) 2px,
-        rgba(55, 255, 106, 0.035) 3px
+        rgba(55, 255, 106, 0.14) 3px
     );
 }
 
@@ -172,6 +183,26 @@ html.js .reveal-item {
     color: var(--color-brand);
 }
 
+/* Green label for contact / team entries */
+.text-green-label {
+    color: #37ff6a;
+}
+
+/* Glitch hover effect for cards */
+@keyframes glitch-shift {
+    0% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(1px, -1px); }
+    60% { transform: translate(-0.5px, 0.5px); }
+    80% { transform: translate(0.5px, -0.5px); }
+    100% { transform: translate(0); }
+}
+.glitch:hover {
+    animation: glitch-shift 0.15s ease-in-out;
+    border-color: #37ff6a;
+    box-shadow: 0 0 8px rgba(55,255,106,0.3);
+}
+
 /* Scroll cue bounce */
 @keyframes cue-drop {
     0%, 100% { transform: translateY(0); opacity: 1; }
@@ -182,6 +213,11 @@ html.js .reveal-item {
 }
 
 /* ---------- intro overlay states ---------- */
+
+/* Boot area: fades and lifts upward when cleared */
+.intro-overlay {
+    cursor: none !important;
+}
 
 /* Boot area: fades and lifts upward when cleared */
 .intro-boot {

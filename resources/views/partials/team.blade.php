@@ -1,10 +1,6 @@
 {{--
-    Team — "OUR TEAM / تیم ما"
-    Terminal window; same command/scroll reveal pattern as About,
-    progressively loading 10 placeholder member cards.
-
-    CONTENT PLACEHOLDERS: names and roles are [PLACEHOLDER]. Avatars are
-    procedurally generated (seeded by index) — deterministic, no photos.
+    Team — "OUR TEAM"
+    Terminal window; same command/scroll reveal pattern.
 --}}
 
 <section id="team" class="relative px-5 py-24 sm:py-32">
@@ -20,9 +16,8 @@
                         <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
                         <span class="inline-block h-2.5 w-2.5 bg-brand/70"></span>
                     </span>
-                    <span>team — 10 members</span>
+                    <span>team — members</span>
                 </span>
-                <span class="arabic text-sm text-term-fg/60" dir="rtl" aria-hidden="true">تیم ما</span>
                 <span class="sr-only">Our team</span>
             </div>
 
@@ -32,7 +27,7 @@
                     OUR TEAM
                 </h2>
                 <p class="mb-6 text-sm text-term-fg/50">
-                    [PLACEHOLDER — one-line team intro]
+                    The people behind the build.
                 </p>
 
                 {{-- Command line --}}
@@ -41,15 +36,15 @@
                     <span class="text-term-fg/50" aria-hidden="true">flowsee:~$</span>
                     <span class="cmd-text text-term-fg"></span>
                     <span class="type-caret text-term-fg" aria-hidden="true"></span>
-                    <span class="cmd-status text-xs text-term-fg/40" data-status>// click or scroll to run</span>
+                    <span class="cmd-status text-xs text-term-fg/40" data-status="// click or scroll to run</span>
                 </div>
 
-                {{-- 10 progressively loaded member cards --}}
+                {{-- Member cards --}}
                 <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group aria-live="polite">
                     @php $employees = \App\Models\Employee::latest()->get(); @endphp
                     @forelse ($employees as $i => $emp)
                         <article class="reveal-item member-card flex gap-4 border border-term-fg/12 p-4
-                                        transition-colors hover:border-term-fg/35"
+                                        transition-colors hover:border-term-fg/35 hover:glitch"
                                  style="--d: {{ $i * 0.12 }}s">
                             @if($emp->image)
                             <img src="/storage/{{ $emp->image }}" class="w-16 h-16 object-cover rounded shrink-0" alt="{{ $emp->title }}">
@@ -58,7 +53,9 @@
                             @endif
                             <div class="min-w-0">
                                 <p class="text-sm font-bold text-brand">{{ $emp->title }}</p>
-                                <p class="mt-0.5 text-sm text-term-fg/80">{{ Str::limit($emp->text, 100) }}</p>
+                                <div class="flex flex-col gap-1">
+                                    <p class="mt-0.5 text-sm text-term-fg/80">{{ Str::limit($emp->text, 100) }}</p>
+                                </div>
                             </div>
                         </article>
                     @empty
