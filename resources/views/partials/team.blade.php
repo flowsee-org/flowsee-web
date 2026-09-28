@@ -41,7 +41,7 @@
                 </div>
 
                 {{-- Member cards --}}
-                <div class="mt-8 grid gap-3" style="grid-template-columns:repeat(3, 1fr);" data-reveal-group aria-live="polite">
+                <div class="mt-8 grid gap-3" style="display:grid;grid-template-columns:repeat(3, 1fr) !important;gap:0.75rem;" data-reveal-group aria-live="polite">
                     @php $employees = \App\Models\Employee::latest()->get(); @endphp
                     @forelse ($employees as $i => $emp)
                         <article class="reveal-item member-card flex gap-4 border border-term-fg/12 p-4
