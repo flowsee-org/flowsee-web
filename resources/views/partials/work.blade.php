@@ -38,26 +38,26 @@
                 <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group aria-live="polite">
                     @php $works = \App\Models\Work::latest()->get(); @endphp
                     @forelse ($works as $i => $w)
-                    <a href="{{ route('work.show', $w) }}" class="reveal-item work-card block border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:glitch" style="--d: {{ $i * 0.12 }}s">
+                    <a href="{{ route('work.show', $w) }}" class="reveal-item work-card block border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:border-term-fg/35" style="--d: {{ $i * 0.12 }}s">
                         <div class="flex flex-col gap-2 text-term-fg/75">
                             <strong class="text-brand">{{ $w->title }}</strong>
                             <span>{{ Str::limit($w->text, 100) }}</span>
                         </div>
                     </a>
                     @empty
-                    <article class="reveal-item work-card border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:glitch" style="--d: 0s">
+                    <article class="reveal-item work-card border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:border-term-fg/35" style="--d: 0s">
                         <div class="flex flex-col gap-2 text-term-fg/75">
                             <strong class="text-brand">Project Alpha</strong>
                             <span>Brand identity + terminal interface design.</span>
                         </div>
                     </article>
-                    <article class="reveal-item work-card border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:glitch" style="--d: 0.12s">
+                    <article class="reveal-item work-card border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:border-term-fg/35" style="--d: 0.12s">
                         <div class="flex flex-col gap-2 text-term-fg/75">
                             <strong class="text-brand">Project Beta</strong>
                             <span>Web platform with real-time data streams.</span>
                         </div>
                     </article>
-                    <article class="reveal-item work-card border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:glitch" style="--d: 0.24s">
+                    <article class="reveal-item work-card border border-term-fg/12 p-4 transition-colors hover:border-term-fg/35 hover:border-term-fg/35" style="--d: 0.24s">
                         <div class="flex flex-col gap-2 text-term-fg/75">
                             <strong class="text-brand">Project Gamma</strong>
                             <span>Growth system for digital products.</span>
