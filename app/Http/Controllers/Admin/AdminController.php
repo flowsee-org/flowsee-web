@@ -33,7 +33,11 @@ class AdminController extends Controller
 
     public function storeBlog(Request $request)
     {
-        $request->validate(['title' => 'required', 'text' => 'required']);
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required',
+            'image' => 'nullable|image|max:10240',
+        ]);
         $data = $request->only('title', 'text');
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('blogs', 'public');
@@ -51,7 +55,11 @@ class AdminController extends Controller
 
     public function storeEmployee(Request $request)
     {
-        $request->validate(['title' => 'required', 'text' => 'required']);
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required',
+            'image' => 'nullable|image|max:10240',
+        ]);
         $data = $request->only('title', 'text');
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('employees', 'public');

@@ -15,6 +15,7 @@
                         <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
                         <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
                         <span class="inline-block h-2.5 w-2.5 bg-brand/70"></span>
+                        <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
                     </span>
                     <span>team — members</span>
                 </span>
@@ -40,7 +41,7 @@
                 </div>
 
                 {{-- Member cards --}}
-                <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group aria-live="polite">
+                <div class="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-3" data-reveal-group aria-live="polite">
                     @php $employees = \App\Models\Employee::latest()->get(); @endphp
                     @forelse ($employees as $i => $emp)
                         <article class="reveal-item member-card flex gap-4 border border-term-fg/12 p-4

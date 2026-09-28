@@ -3,6 +3,11 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    # Allow uploads up to 10 MB
+    php_value upload_max_filesize 10M
+    php_value post_max_size 12M
+    php_value memory_limit 256M
+
     RewriteEngine On
 
     # Handle Authorization Header

@@ -13,14 +13,9 @@
 
     {{-- Typing tagline behind prompt --}}
     <p class="font-mono text-sm sm:text-base md:text-lg text-center relative z-10">
+        <span class="text-term-fg/50" aria-hidden="true">flowsee:~$&nbsp;</span>
         <span id="hero-type" class="text-term-fg/80">BUILT FOR DIGITAL. DESIGNED TO MOVE</span>
         <span class="type-caret text-term-fg" aria-hidden="true"></span>
-    </p>
-
-    {{-- Static prompt --}}
-    <p class="font-mono text-sm sm:text-base md:text-lg relative z-10">
-        <span class="text-term-fg/50" aria-hidden="true">flowsee:~$&nbsp;</span>
-        <span class="text-brand font-bold text-lg tracking-wider">FLOWSEE</span>
     </p>
 
     {{-- Orange brand line (draws in when hero starts) --}}

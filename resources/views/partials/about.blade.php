@@ -13,11 +13,12 @@
             <div class="flex items-center justify-between gap-3 border-b border-term-fg/15 px-4 py-2.5 text-xs text-term-fg/50">
                 <span class="flex items-center gap-2" aria-hidden="true">
                     <span class="flex gap-1.5">
-                        <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
-                        <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
                         <span class="inline-block h-2.5 w-2.5 bg-brand/70"></span>
+                        <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
+                        <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
+                        <span class="inline-block h-2.5 w-2.5 bg-term-fg/25"></span>
                     </span>
-                    <span>about_us — 8 entries</span>
+                    <span>about_us</span>
                 </span>
                 <span class="sr-only">About us</span>
             </div>
