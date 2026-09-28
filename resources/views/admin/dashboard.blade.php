@@ -11,17 +11,19 @@ h2{font-size:1.1rem;margin-top:0;border-bottom:1px solid #333;padding-bottom:.5r
 input,textarea{width:100%;padding:.6rem;border:1px solid #333;border-radius:6px;background:#0f0f1a;color:#eee;margin:.3rem 0;font-family:inherit}
 button{padding:.6rem 1rem;background:#e94560;color:#fff;border:none;border-radius:6px;cursor:pointer}
 button.secondary{background:#333}
+button.small{padding:.3rem .6rem;font-size:.85rem}
 table{width:100%;border-collapse:collapse;font-size:.9rem}
 th,td{padding:.6rem;text-align:left;border-bottom:1px solid #2a2a40}
 img{max-width:120px;border-radius:6px;border:1px solid #333}
 .alert{background:#e9456030;color:#e94560;padding:.7rem;border-radius:6px;margin-bottom:1rem}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 @media(max-width:900px){.grid-2{grid-template-columns:1fr}}
+.edit-form{display:none;margin-top:.5rem}
 </style>
 </head>
 <body>
 <h1>Admin Panel</h1>
-<p class="subtitle">/wp-admin — change profile, manage blogs & employees, edit contact.</p>
+<p class="subtitle">/wp-admin — change profile, manage blogs, works, employees, edit contact.</p>
 
 @if(session('ok'))<div class="alert">{{session('ok')}}</div>@endif
 
@@ -55,15 +57,44 @@ img{max-width:120px;border-radius:6px;border:1px solid #333}
 <button>Add Blog</button>
 </form>
 <table>
-<thead><tr><th>Title</th><th>Image</th><th>Action</th></tr></thead>
+<thead><tr><th>Title</th><th>Image</th><th>Actions</th></tr></thead>
 <tbody>
 @forelse($blogs as $b)
 <tr>
 <td>{{Str::limit($b->title,40)}}</td>
 <td>@if($b->image)<img src="/storage/{{$b->image}}">@endif</td>
-<td><form method="POST" action="/wp-admin/blogs/{{$b->id}}">@csrf @method('DELETE') <button class="secondary" onclick="return confirm('Delete?')">Delete</button></form></td>
+<td>
+<form method="POST" action="/wp-admin/blogs/{{$b->id}}" style="display:inline">@csrf @method('PUT') <input type="text" name="title" value="{{ $b->title }}" required placeholder="Title" style="padding:.3rem;width:120px"> <textarea name="text" rows="1" required placeholder="Text" style="padding:.3rem;width:120px">{{ $b->text }}</textarea> <input type="file" name="image" accept="image/*" style="margin-top:.2rem"> <button class="small">Update</button></form>
+<form method="POST" action="/wp-admin/blogs/{{$b->id}}" style="display:inline">@csrf @method('DELETE') <button class="secondary small" onclick="return confirm('Delete?')">Delete</button></form>
+</td>
 </tr>
 @empty<tr><td colspan="3">No blogs yet.</td></tr>
+@endforelse
+</tbody>
+</table>
+</div>
+
+<div class="card">
+<h2>Works</h2>
+<form method="POST" action="/wp-admin/works" enctype="multipart/form-data">@csrf
+<p><input type="text" name="title" placeholder="Title" required></p>
+<p><textarea name="text" rows="3" placeholder="Text" required></textarea></p>
+<p><input type="file" name="image" accept="image/*"></p>
+<button>Add Work</button>
+</form>
+<table>
+<thead><tr><th>Title</th><th>Image</th><th>Actions</th></tr></thead>
+<tbody>
+@forelse($works as $w)
+<tr>
+<td>{{Str::limit($w->title,40)}}</td>
+<td>@if($w->image)<img src="/storage/{{$w->image}}">@endif</td>
+<td>
+<form method="POST" action="/wp-admin/works/{{$w->id}}" style="display:inline">@csrf @method('PUT') <input type="text" name="title" value="{{ $w->title }}" required placeholder="Title" style="padding:.3rem;width:120px"> <textarea name="text" rows="1" required placeholder="Text" style="padding:.3rem;width:120px">{{ $w->text }}</textarea> <input type="file" name="image" accept="image/*" style="margin-top:.2rem"> <button class="small">Update</button></form>
+<form method="POST" action="/wp-admin/works/{{$w->id}}" style="display:inline">@csrf @method('DELETE') <button class="secondary small" onclick="return confirm('Delete?')">Delete</button></form>
+</td>
+</tr>
+@empty<tr><td colspan="3">No works yet.</td></tr>
 @endforelse
 </tbody>
 </table>
@@ -78,13 +109,16 @@ img{max-width:120px;border-radius:6px;border:1px solid #333}
 <button>Add Employee</button>
 </form>
 <table>
-<thead><tr><th>Title</th><th>Image</th><th>Action</th></tr></thead>
+<thead><tr><th>Title</th><th>Image</th><th>Actions</th></tr></thead>
 <tbody>
 @forelse($employees as $e)
 <tr>
 <td>{{Str::limit($e->title,40)}}</td>
 <td>@if($e->image)<img src="/storage/{{$e->image}}">@endif</td>
-<td><form method="POST" action="/wp-admin/employees/{{$e->id}}">@csrf @method('DELETE') <button class="secondary" onclick="return confirm('Delete?')">Delete</button></form></td>
+<td>
+<form method="POST" action="/wp-admin/employees/{{$e->id}}" style="display:inline">@csrf @method('PUT') <input type="text" name="title" value="{{ $e->title }}" required placeholder="Title" style="padding:.3rem;width:120px"> <textarea name="text" rows="1" required placeholder="Text" style="padding:.3rem;width:120px">{{ $e->text }}</textarea> <input type="file" name="image" accept="image/*" style="margin-top:.2rem"> <button class="small">Update</button></form>
+<form method="POST" action="/wp-admin/employees/{{$e->id}}" style="display:inline">@csrf @method('DELETE') <button class="secondary small" onclick="return confirm('Delete?')">Delete</button></form>
+</td>
 </tr>
 @empty<tr><td colspan="3">No employees yet.</td></tr>
 @endforelse

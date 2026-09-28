@@ -35,7 +35,7 @@
                 <div class="space-y-3">
                     {{-- INSTAGRAM --}}
                     <a href="{{ optional($setting)->instagram ? 'https://instagram.com/' . $setting->instagram : '#' }}"
-                       class="contact-link flex flex-wrap items-baseline gap-x-3 gap-y-1 border border-term-fg/12 px-4 py-3 text-sm transition-colors hover:border-term-fg/40 hover:bg-term-fg/5 focus-visible:outline-1 focus-visible:outline-brand">
+                       class="contact-link glitch flex flex-wrap items-baseline gap-x-3 gap-y-1 border border-term-fg/12 px-4 py-3 text-sm transition-colors hover:border-term-fg/40 hover:bg-term-fg/5 focus-visible:outline-1 focus-visible:outline-brand">
                         <span class="w-28 shrink-0 text-green-400">INSTAGRAM</span>
                         <span class="text-term-fg/50" aria-hidden="true">→</span>
                         <span class="text-term-fg/80">{{ optional($setting)->instagram ?: '@flowsee' }}</span>
@@ -44,7 +44,7 @@
 
                     {{-- TELEGRAM --}}
                     <a href="{{ optional($setting)->telegram ? 'https://t.me/' . $setting->telegram : '#' }}"
-                       class="contact-link flex flex-wrap items-baseline gap-x-3 gap-y-1 border border-term-fg/12 px-4 py-3 text-sm transition-colors hover:border-term-fg/40 hover:bg-term-fg/5 focus-visible:outline-1 focus-visible:outline-brand">
+                       class="contact-link glitch flex flex-wrap items-baseline gap-x-3 gap-y-1 border border-term-fg/12 px-4 py-3 text-sm transition-colors hover:border-term-fg/40 hover:bg-term-fg/5 focus-visible:outline-1 focus-visible:outline-brand">
                         <span class="w-28 shrink-0 text-green-400">TELEGRAM</span>
                         <span class="text-term-fg/50" aria-hidden="true">→</span>
                         <span class="text-term-fg/80">{{ optional($setting)->telegram ?: 't.me/flowsee' }}</span>
@@ -53,7 +53,7 @@
 
                     {{-- PHONE --}}
                     <a href="{{ optional($setting)->phone ? 'tel:' . $setting->phone : '#' }}"
-                       class="contact-link flex flex-wrap items-baseline gap-x-3 gap-y-1 border border-term-fg/12 px-4 py-3 text-sm transition-colors hover:border-term-fg/40 hover:bg-term-fg/5 focus-visible:outline-1 focus-visible:outline-brand">
+                       class="contact-link glitch flex flex-wrap items-baseline gap-x-3 gap-y-1 border border-term-fg/12 px-4 py-3 text-sm transition-colors hover:border-term-fg/40 hover:bg-term-fg/5 focus-visible:outline-1 focus-visible:outline-brand">
                         <span class="w-28 shrink-0 text-green-400">PHONE</span>
                         <span class="text-term-fg/50" aria-hidden="true">→</span>
                         <span class="text-term-fg/80">{{ optional($setting)->phone ?: '+98 XXX XXX XXXX' }}</span>
