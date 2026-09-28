@@ -44,7 +44,7 @@
                 <div class="mt-8 grid gap-3" style="display:grid;grid-template-columns:repeat(3, 1fr) !important;gap:0.75rem;" data-reveal-group aria-live="polite">
                     @php $employees = \App\Models\Employee::latest()->get(); @endphp
                     @forelse ($employees as $i => $emp)
-                        <article class="reveal-item member-card flex gap-4 border border-term-fg/12 p-4
+                        <article class="reveal-item member-card glitch flex gap-4 border border-term-fg/12 p-4
                                         transition-colors hover:border-term-fg/35 hover:glitch"
                                  style="--d: {{ $i * 0.12 }}s">
                             @if($emp->image)
@@ -60,7 +60,7 @@
                             </div>
                         </article>
                     @empty
-                        <article class="reveal-item member-card flex gap-4 border border-term-fg/12 p-4">
+                        <article class="reveal-item member-card glitch flex gap-4 border border-term-fg/12 p-4">
                             <div class="min-w-0"><p class="text-sm font-bold text-brand">No team members yet</p><p class="text-xs text-term-fg/45">Add from /wp-admin</p></div>
                         </article>
                     @endforelse
