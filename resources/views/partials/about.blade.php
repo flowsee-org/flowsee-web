@@ -45,7 +45,7 @@
                 <div id="about-output" class="data-block mt-6" data-reveal-group aria-live="polite">
                     @php $blogs = \App\Models\AboutBlog::latest()->get(); @endphp
                     @forelse ($blogs as $i => $blog)
-                        <article class="reveal-item entry glitch border-t border-term-fg/10 py-3 first:border-t-0 first:pt-0" style="--d: {{ $i * 0.12 }}s">
+                        <article class="reveal-item entry border-t border-term-fg/10 py-3 first:border-t-0 first:pt-0" style="--d: {{ $i * 0.12 }}s">
                             <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                                 <span class="w-12 shrink-0 text-brand">[ {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }} ]</span>
                                 <span class="w-24 shrink-0 text-term-fg/55">BLOG</span>
@@ -59,7 +59,7 @@
                             @endif
                         </article>
                     @empty
-                        <article class="reveal-item entry glitch border-t border-term-fg/10 py-3 first:border-t-0 first:pt-0">
+                        <article class="reveal-item entry border-t border-term-fg/10 py-3 first:border-t-0 first:pt-0">
                             <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                                 <span class="w-12 shrink-0 text-brand">[ 01 ]</span>
                                 <span class="w-24 shrink-0 text-term-fg/55">ROOT</span>
